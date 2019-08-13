@@ -15,19 +15,45 @@ document.addEventListener("DOMContentLoaded", function () {
         constructor(gameWidth, gameHeight){
             this.width=200;
             this.height=20;
-            this.positionFromBottom=10
+            this.positionFromBottom=10;
+            this.color="green";
+            this.speed=7;
             this.position ={
                 x:(gameWidth -this.width)/2,
                 y:gameHeight -this.height - this.positionFromBottom,
             }
         }
         draw(context){
-            context.fillRect(this.position.x, this.position.y, this.width,this.height)
+            context.fillStyle = this.color;
+            context.fillRect(this.position.x, this.position.y, this.width,this.height);
+        }
+
+        move(){
+            document.addEventListener("keydown", (event)=>{
+                if(event.keyCode===37||event.keyCode===65){
+                this.position.x-=this.speed;
+                }
+            else if(event.keyCode===39||event.keyCode===68) {
+                    this.position.x += this.speed
+                    if(this.position.x===0){
+                        alert("stop")
+                    }
+                }
+                context.clearRect(0,0,1000,800) // czyszczenie
+                this.draw(context)
+
+            });
+
         }
 
     }
+
+
 let paddle =new Paddle(gameWidth,gameHeight);
 
     paddle.draw(context)
+
+   paddle.move()
+
 
 });
