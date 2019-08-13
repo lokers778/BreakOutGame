@@ -2,11 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let canvas = document.querySelector("canvas");
     let context = canvas.getContext("2d");
-    context.fillStyle = "red"; //change style for drawing
-    context.fillRect(20, 20, 10, 10); //drawing rectangle
-    context.fillStyle = "blue";
-    context.fillRect(100, 100, 10, 10);
-    context.clearRect(0,0,800,800) // czyszczenie
     let gameWidth=1000
     let gameHeight=800;
 
@@ -31,15 +26,16 @@ document.addEventListener("DOMContentLoaded", function () {
         move(){
             document.addEventListener("keydown", (event)=>{
                 if(event.keyCode===37||event.keyCode===65){
-                this.position.x-=this.speed;
+               if(this.position.x>0){
+                   this.position.x -= this.speed;
+               }
                 }
             else if(event.keyCode===39||event.keyCode===68) {
-                    this.position.x += this.speed
-                    if(this.position.x===0){
-                        alert("stop")
+                    if(this.position.x<gameWidth-this.width){
+                        this.position.x += this.speed
                     }
                 }
-                context.clearRect(0,0,1000,800) // czyszczenie
+                context.clearRect(0,0,1000,800) //
                 this.draw(context)
 
             });
