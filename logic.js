@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     class BallCanvas {
         constructor() {
-            this.ball = document.querySelector("img");
+            this.ball = document.querySelector(".ball");
             this.speed={x:10,y:10};
             this.position={x:10,y:10}
             this.size=20;
@@ -85,13 +85,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
     }
+    class Brick {
+        constructor(position) {
+            this.brick = document.querySelector(".brick");
+            this.width = 52;
+            this.height=24;
+            this.position=position
+        }
+
+        draw(context) {
+console.log(this.brick)
+            context.drawImage(this.brick, this.position.x, this.position.y, this.width, this.height)
+        }
+    }
 
     let paddle = new Paddle(gameWidth, gameHeight);
     let ball = new BallCanvas();
+    let bricks=[];
+
+    for(let i=0; i<10 ;i++){
+        bricks.push(new Brick({x:i*52,y:i*24}));
+    }
 
     paddle.draw(context);
     ball.draw(context);
-    ball.update()
+    ball.update();
     paddle.move();
-console.log(paddle.position.y)
+    bricks.forEach((e)=>{
+        e.draw(context)
+    })
 });
