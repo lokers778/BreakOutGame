@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
     class BallCanvas {
         constructor() {
             this.ball = document.querySelector("img");
-            this.speed={x:5,y:5};
+            this.speed={x:10,y:10};
             this.position={x:10,y:10}
             this.size=20;
         }
@@ -70,12 +70,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 if(this.position.x+this.size>gameWidth||this.position.x<0){
                     this.speed.x=-this.speed.x;
                 }
-                if(this.position.y+this.size>gameHeight||this.position.y<0){
+                if(this.position.y<0){
                     this.speed.y=-this.speed.y;
+                }
+                if(this.position.y+this.size>gameHeight){
+                }
+                if(this.position.y+this.size>=paddle.position.y && this.position.x>paddle.position.x && this.position.x<paddle.position.x +paddle.width ){
+                    this.speed.y=-this.speed.y;
+                    this.position.y=paddle.position.y-this.size
                 }
 
                 ball.draw(context);
-            },30)
+            },50)
 
         }
     }
@@ -87,5 +93,5 @@ document.addEventListener("DOMContentLoaded", function () {
     ball.draw(context);
     ball.update()
     paddle.move();
-
+console.log(paddle.position.y)
 });
