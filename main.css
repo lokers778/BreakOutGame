@@ -10,3 +10,6 @@ canvas{
     margin-top: 0.05vh;
     max-height: 99.5vh;
 }
+img{
+    display: none;
+}
