@@ -55,19 +55,27 @@ document.addEventListener("DOMContentLoaded", function () {
             this.ball = document.querySelector("img");
             this.speed={x:5,y:5};
             this.position={x:10,y:10}
+            this.size=20;
         }
 
         draw(context) {
 
-            context.drawImage(this.ball, this.position.x, this.position.y, 20, 20)
+            context.drawImage(this.ball, this.position.x, this.position.y, this.size, this.size)
         }
         update(){
             setInterval(()=>{
-                context.clearRect(this.position.x, this.position.y, 20, 20) //
+                context.clearRect(this.position.x, this.position.y, this.size, this.size)
                 this.position.x +=this.speed.x;
                 this.position.y +=this.speed.y;
+                if(this.position.x+this.size>gameWidth||this.position.x<0){
+                    this.speed.x=-this.speed.x;
+                }
+                if(this.position.y+this.size>gameHeight||this.position.y<0){
+                    this.speed.y=-this.speed.y;
+                }
+
                 ball.draw(context);
-            },100)
+            },30)
 
         }
     }
