@@ -2,9 +2,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let canvas = document.querySelector("canvas");
     let context = canvas.getContext("2d");
-    let gameWidth=1000
-    let gameHeight=800;
-
+    let gameWidth=window.innerWidth;
+    let gameHeight=window.innerHeight;
+canvas.setAttribute("width",`${gameWidth}`)
+    canvas.setAttribute("height",`${gameHeight}`)
 
     class Paddle{
         constructor(gameWidth, gameHeight){
@@ -12,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
             this.height=20;
             this.positionFromBottom=10;
             this.color="green";
-            this.speed=7;
+            this.speed=15;
             this.position ={
                 x:(gameWidth -this.width)/2,
                 y:gameHeight -this.height - this.positionFromBottom,
@@ -35,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         this.position.x += this.speed
                     }
                 }
-                context.clearRect(0,0,1000,800) //
+                context.clearRect(0,0,gameWidth,gameHeight) //
                 this.draw(context)
 
             });

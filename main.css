@@ -5,7 +5,8 @@
 }
 canvas{
     border:solid black 1px;
-    width: 80%;
-    max-height: 80vh;
-    margin: 9vh 10%;
+    max-width: 99.9vw;
+    margin-left: 0.1vw;
+    margin-top: 0.05vh;
+    max-height: 99.5vh;
 }
