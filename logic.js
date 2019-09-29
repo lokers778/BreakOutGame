@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             context.drawImage(this.ball, this.position.x, this.position.y, this.size, this.size)
         }
-        update(){
+        update(bricks){
             setInterval(()=>{
                 context.clearRect(this.position.x, this.position.y, this.size, this.size)
                 this.position.x +=this.speed.x;
@@ -79,6 +79,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     this.speed.y=-this.speed.y;
                     this.position.y=paddle.position.y-this.size
                 }
+                bricks.forEach((brick)=>{
+                    if(this.position.y +this.size >=brick.position.y && this.position.y<=brick.position.y + brick.height && this.position.x>= brick.position.x && this.position.x + this.size<=brick.position.x +brick.width){
+                        this.speed.y=-this.speed.y;
+                    }
+
+                })
+
+
 
                 ball.draw(context);
             },50)
@@ -101,12 +109,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let paddle = new Paddle(gameWidth, gameHeight);
     let ball = new BallCanvas();
-   /*
-    let bricks=[];
-    for(let i=0; i<10 ;i++){
-        bricks.push(new Brick({x:i*52,y:i*24}));
-    }
-*/
+
+    let brick =new Brick({x:10,y:20})
+    brick.draw(context)
     const level_1=[
         [0,1,0,1,0,1,0,1,0,1],
         [1,0,1,0,1,0,1,0,1,0],
@@ -122,6 +127,15 @@ document.addEventListener("DOMContentLoaded", function () {
         [1,0,0,1,1,0,0,1,1,0],
         [0,1,1,0,0,1,1,0,0,1],
         [1,0,0,1,1,0,0,1,1,0],
+    ];
+    const level_3=[
+        [0,1,0,1,0,1,0,1,0,1],
+        [0,1,0,1,0,1,0,1,0,1],
+        [1,1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1,1],
+        [0,0,0,0,0,0,0,0,0,0],
     ]
 
     let bricks =[];
@@ -141,10 +155,10 @@ document.addEventListener("DOMContentLoaded", function () {
         })
     }
 
-    buildLevel(level_2)
+    buildLevel(level_3)
     paddle.draw(context);
     ball.draw(context);
-    ball.update();
+    ball.update(bricks);
     paddle.move();
     bricks.forEach((e)=>{
         e.draw(context)
