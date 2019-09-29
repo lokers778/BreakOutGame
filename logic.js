@@ -53,9 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {
     class BallCanvas {
         constructor() {
             this.ball = document.querySelector(".ball");
-            this.speed={x:10,y:10};
-            this.position={x:10,y:10}
-            this.size=20;
+            this.speed={x:10,y:-10};
+            this.position={x:gameWidth/2,y:gameHeight+paddle.height}
+            this.size=40;
         }
 
         draw(context) {
@@ -70,10 +70,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 if(this.position.x+this.size>gameWidth||this.position.x<0){
                     this.speed.x=-this.speed.x;
                 }
-                if(this.position.y<0){
+                if(this.position.y+this.size<-10){
                     this.speed.y=-this.speed.y;
                 }
                 if(this.position.y+this.size>gameHeight){
+                    console.log("you lost")
                 }
                 if(this.position.y+this.size>=paddle.position.y && this.position.x>paddle.position.x && this.position.x<paddle.position.x +paddle.width ){
                     this.speed.y=-this.speed.y;
@@ -84,6 +85,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         this.speed.y=-this.speed.y;
                         bricks.splice(index,1)
                         context.clearRect(brick.position.x, brick.position.y, brick.width, brick.height)
+                        if(bricks.length===0){
+                            console.log("Wyyyyyygrana")
+                        }
                     }
 
                 })
@@ -131,12 +135,8 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
     const level_3=[
         [0,1,0,1,0,1,0,1,0,1],
-        [0,1,0,1,0,1,0,1,0,1],
         [1,1,1,1,1,1,1,1,1,1],
         [1,1,1,1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1,1,1,1],
-        [1,1,1,1,1,1,1,1,1,1],
-        [0,0,0,0,0,0,0,0,0,0],
     ]
 
     let bricks =[];
