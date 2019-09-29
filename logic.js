@@ -79,9 +79,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     this.speed.y=-this.speed.y;
                     this.position.y=paddle.position.y-this.size
                 }
-                bricks.forEach((brick)=>{
+                bricks.forEach((brick,index)=>{
                     if(this.position.y +this.size >=brick.position.y && this.position.y<=brick.position.y + brick.height && this.position.x>= brick.position.x && this.position.x + this.size<=brick.position.x +brick.width){
                         this.speed.y=-this.speed.y;
+                        bricks.splice(index,1)
+                        context.clearRect(brick.position.x, brick.position.y, brick.width, brick.height)
                     }
 
                 })
@@ -110,8 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let paddle = new Paddle(gameWidth, gameHeight);
     let ball = new BallCanvas();
 
-    let brick =new Brick({x:10,y:20})
-    brick.draw(context)
+
     const level_1=[
         [0,1,0,1,0,1,0,1,0,1],
         [1,0,1,0,1,0,1,0,1,0],
