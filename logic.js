@@ -89,8 +89,8 @@ document.addEventListener("DOMContentLoaded", function () {
     class Brick {
         constructor(position) {
             this.brick = document.querySelector(".brick");
-            this.width = 52;
-            this.height=24;
+            this.width = gameWidth/10;
+            this.height=gameHeight/20;
             this.position=position
         }
 
@@ -112,7 +112,18 @@ document.addEventListener("DOMContentLoaded", function () {
         [1,0,1,0,1,0,1,0,1,0],
         [0,1,0,1,0,1,0,1,0,1],
         [1,0,1,0,1,0,1,0,1,0],
+        [0,1,0,1,0,1,0,1,0,1],
+        [1,0,1,0,1,0,1,0,1,0],
+    ];
+    const level_2=[
+        [0,1,1,0,0,1,1,0,0,1],
+        [1,0,0,1,1,0,0,1,1,0],
+        [0,1,1,0,0,1,1,0,0,1],
+        [1,0,0,1,1,0,0,1,1,0],
+        [0,1,1,0,0,1,1,0,0,1],
+        [1,0,0,1,1,0,0,1,1,0],
     ]
+
     let bricks =[];
     const buildLevel=(level)=>{
         bricks=[];
@@ -121,8 +132,8 @@ document.addEventListener("DOMContentLoaded", function () {
             row.forEach((brick,bricksItem)=>{
                 if(brick === 1){
                     let position={
-                        x:80* bricksItem,
-                        y:20 * rowsItem
+                        x:gameWidth/10* bricksItem,
+                        y: gameHeight/20 + gameHeight/20 * rowsItem
                     }
                   bricks.push(new Brick(position))
                 }
@@ -130,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
     }
 
-    buildLevel(level_1)
+    buildLevel(level_2)
     paddle.draw(context);
     ball.draw(context);
     ball.update();
