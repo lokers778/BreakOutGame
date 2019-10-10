@@ -137,6 +137,20 @@ document.addEventListener("DOMContentLoaded", function () {
         [0,1,0,1,0,1,0,1,0,1],
         [1,1,1,1,1,1,1,1,1,1],
         [1,1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1,1],
+    ];
+    const level_4=[
+        [1,0,1,0,0,1,0,1,0,1],
+        [1,0,1,0,0,1,0,1,0,1],
+        [1,0,1,1,1,1,0,1,0,1],
+        [1,0,1,1,1,1,0,1,0,1],
+        [1,0,1,1,1,1,0,1,0,1],
+        [1,0,1,1,1,1,0,1,0,1],
+        [1,0,1,1,1,1,0,1,0,1],
+        [1,0,0,1,1,0,0,1,0,1],
+        [1,0,0,1,1,0,0,1,1,1],
+        [1,0,0,1,1,0,0,1,1,1],
     ]
 
     let bricks =[];
@@ -156,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
     }
 
-    buildLevel(level_3)
+    buildLevel(level_4)
     paddle.draw(context);
     ball.draw(context);
     ball.update(bricks);
