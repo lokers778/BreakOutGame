@@ -4,12 +4,40 @@
     padding:0;
 }
 canvas{
+    display: none;
     border:solid black 1px;
     max-width: 99.9vw;
     margin-left: 0.1vw;
     margin-top: 0.05vh;
     max-height: 99.5vh;
+    background-color: lightblue;
+}
+body{
+    background-color: lightblue;
 }
 img{
     display: none;
+}
+#startingScreen{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+ul{
+    list-style-type: none;
+    margin: 20px;
+}
+li{
+    background-color: lightcoral;
+    font-size: 15px;
+    padding:1vw 0vw;
+    text-align: center;
+    height: 3vw;
+    display: block;
+    width: 5vw;
+    border: 1px solid black;
+    margin: 10px;
 }
